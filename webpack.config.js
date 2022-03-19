@@ -10,7 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.?js$/,
+        test: /\.?jsx?/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -30,9 +30,9 @@ module.exports = {
       template: path.join(__dirname, "client", "index.html"),
     }),
   ],
-  devServer: {
-  proxy: {
-    '/': 'http://localhost:3000'
-  }
-}
+//   devServer: {
+//   proxy: {
+//     '/': 'http://localhost:3000'
+//   }
+// }
 };
