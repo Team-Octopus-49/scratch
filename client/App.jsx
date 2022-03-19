@@ -9,10 +9,11 @@ class App extends Component{
   render(){
     return (
       <h1>
-        hello world {+ this.state.name}
+        hello {+ this.state.name}
       </h1>
     )
   }
 }
 
+// render(<App />, document.querySelector('#root'))
 export default App;
