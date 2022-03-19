@@ -1,10 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './App';
+import '../client/style/style.css';
+import App from './App.jsx';
 
-render(
-    <App />
-  document.getElementById('app'),
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // ok
