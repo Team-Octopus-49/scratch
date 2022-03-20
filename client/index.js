@@ -9,6 +9,7 @@ import {
 import App from './App.jsx';
 import SignIn from './components/signin.jsx'
 import SignUp from './components/signup.jsx'
+import Home from './components/home.jsx'
 
 render( 
   <Router>
@@ -16,6 +17,7 @@ render(
       <Route path="/" element={<App />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/home" element={<Home />} />
   </Routes>
   </Router>,
     document.getElementById('root')
