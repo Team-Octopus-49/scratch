@@ -185,6 +185,7 @@
     "minimatch": "^3.1.2",
     "minimist": "^1.2.5",
     "mkdirp": "^0.5.5",
+    "mongoose": "^6.2.7",
     "ms": "^2.0.0",
     "multicast-dns": "^6.2.3",
     "multicast-dns-service-types": "^1.1.0",
@@ -216,6 +217,7 @@
     "path-parse": "^1.0.7",
     "path-to-regexp": "^0.1.7",
     "path-type": "^4.0.0",
+    "pg": "^8.7.3",
     "picocolors": "^1.0.0",
     "picomatch": "^2.3.1",
     "pkg-dir": "^4.2.0",
@@ -309,6 +311,7 @@
     "ws": "^8.5.0"
   },
   "scripts": {
+    "start": "nodemon server/server.js",
     "dev": "webpack serve",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -330,6 +333,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.15",
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
