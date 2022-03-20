@@ -41,20 +41,44 @@ router.get('/allusers',
 router.post('/item',
   itemController.addItem,
   // (req, res) => res.status(200).json(res.locals.item)
-  (req, res) => res.status(200).json({ message: 'SAVED!'})
+  (req, res) => res.status(200).json({ message: 'Item Saved!'}) // res.send('Item Saved!')
 );
 
 // update item
 router.put('/item:ID', 
   itemController.updateItem,
-  (req, res) => res.status(200).json(res.locals.item)
+  (req, res) => res.status(200).json({ message: 'Item Updated!'}) // res.send('Item Updated!')
+); 
+
+// delete item
+router.delete('/item:ID', 
+  itemController.deleteItem,
+  (req, res) => res.status(200).json({ message: 'Item Deleted!'}) // res.send('Item Deleted!')
 ); 
 
 
-
-
-
 // '/mycloset'
+
+// get all items
+router.get('/mycloset', 
+  itemController.getItems,
+  (req, res) => res.status(200).json(res.locals.items)
+);
+
+
+// get items by category
+router.get('/mycloset:category', 
+  itemController.getItemsByCategory,
+  (req, res) => res.status(200).json(res.locals.items)
+)
+
+
+// get an item by id
+router.get('/mycloset:ID', 
+itemController.getItemsByID,
+(req, res) => res.status(200).json(res.locals.item)
+)
+
 
 // '/fit'
 
