@@ -30,9 +30,10 @@ module.exports = {
       template: path.join(__dirname, "client", "index.html"),
     }),
   ],
-    devServer: {
-  historyApiFallback: true,
-  proxy: {
+
+  devServer: {
+    historyApiFallback: true,
+    proxy: {
     '/api/**': 'http://localhost:3000'
   }
 }
