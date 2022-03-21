@@ -47,7 +47,7 @@ console.log('13')
           res.redirect('/signin');
         }
       } else { 
-        next(err);
+        return next(err);
       }
       // password is correct
     });

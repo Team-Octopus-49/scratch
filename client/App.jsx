@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Link } from "react-router-dom";
-
+import './style/style.css';
 
 class App extends Component{
   constructor(props){

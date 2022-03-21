@@ -58,7 +58,6 @@ app.use((req, res) => res.status(404).send('This is not the page you\'re looking
   });
   
 
-//
 mongoose.connect('mongodb+srv://octopus:octopusprimemycloset@cluster0.b53wl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Successfully connected to MongoDB.");
