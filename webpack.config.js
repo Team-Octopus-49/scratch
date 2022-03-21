@@ -32,9 +32,10 @@ module.exports = {
   ],
 
   devServer: {
+    port: 8080,
     historyApiFallback: true,
     proxy: {
-    '/api/**': 'http://localhost:3000'
-  }
+    '/api/**': 'http://localhost:3000/'
+  },
 }
 };
