@@ -58,6 +58,12 @@ router.delete('/item/:id',
 
 // '/mycloset'
 
+// get items by category
+router.get('/mycloset/category', // incoming like: /mycloset/category?category=skirt
+  itemController.getItemsByCategory,
+  (req, res) => res.status(200).json(res.locals.items)
+)
+
 // get all items
 router.get('/mycloset', 
   itemController.getItems,
@@ -70,14 +76,6 @@ router.get('/mycloset/:id',
   itemController.getItemsByID,
   (req, res) => res.status(200).json(res.locals.item)
 )
-
-
-// get items by category - still fixing 
-router.get('/mycloset/category', // incoming like: /mycloset/category?category=skirt
-  itemController.getItemsByCategory,
-  (req, res) => res.status(200).json(res.locals.items)
-)
-
 
 
 

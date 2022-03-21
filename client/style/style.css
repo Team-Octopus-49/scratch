@@ -1,4 +1,7 @@
-#itemimg {
-    width: 250;
-    height: 250;
+
+
+.itemPhoto {
+    max-width: 250px;
+    max-height: 250px;
+    display: block; /* remove extra space below image */
 }
