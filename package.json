@@ -185,6 +185,7 @@
     "minimatch": "^3.1.2",
     "minimist": "^1.2.5",
     "mkdirp": "^0.5.5",
+    "mongodb": "^4.4.1",
     "mongoose": "^6.2.7",
     "ms": "^2.0.0",
     "multicast-dns": "^6.2.3",
