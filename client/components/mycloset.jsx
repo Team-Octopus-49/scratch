@@ -14,64 +14,32 @@ class MyCloset extends Component{
     };
 
     // uncomment this when fetch request works
-    // componentDidMount() {
-    //   fetch('/api/') // check the end point and get request
-    //     .then(res => res.json())
-    //     .then((items) => {
-    //       if (!Array.isArray(items)) items = [];
-    //       return this.setState({
-    //         items
-    //       });
-    //     })
-    //     .catch(err => console.log('MyCloset.componentDidMount: get itmes: ERROR: ', err));
-    // }
+    componentDidMount() {
+      fetch('/api/mycloset/') // check the end point and get request
+        .then(res => res.json())
+        .then((items) => {
+          if (!Array.isArray(items)) items = [];
+          return this.setState({
+            items
+          });
+        })
+        .catch(err => console.log('MyCloset.componentDidMount: get itmes: ERROR: ', err));
+    }
 
     render(){
-    //   const getCredentials = () => {
-        // if ("#username".value === '') {
-        //   alert('username cannot be blank');
-        // // check if height is not a number
-        // } else if ("#password".value === '') {
-        //   alert('password cannot be blank, what kinda of hacker are you ?');
-        // } else {
-        //   const body = {
-        //     "#username" ,
-        //     password
-        //   }
-        // }
-    //     fetch('/api/signin', {
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify({
-    //         username : ("#username").value,
-    //         password: ("#password").value
-    //       }
-    //       )
-    //     })
-    //     .then(data => {
-    //       return data.json()
-    //     })
-    //     .then(res=> {
-    //       console.log(res);
-    //       // <Link to='/home'> Home</Link> 
-    //     })
-    //     .catch((err)=> {
-    //         console.log('error')
-    //     });
-    //   }
-
 
     // uncomment this when fetch request works
-    // const { items } = this.state;
-    // const itemCards = items.map((item, i) => {
-    //   return (
-    //     <ClosetItems
-    //       key={i}
-    //       info={item}
-    //     />
-    //   );
-    // });
+    const { items } = this.state;
+    //console.log(items);
+    const itemCards = items.map((item, i) => {
+      return (
+        
+        <ClosetItems
+          key={i}
+          info={item}
+        />
+      );
+    });
 
       return (
         <div className="container" >
@@ -89,11 +57,8 @@ class MyCloset extends Component{
         {/* add ClosetItem jsx class component and render each item in state*/}
 
           <div className="itemDisplay">
-            {/* {itemCards} */}
+            {itemCards}
           </div>
-  
-       
-        
         </div>
       
           );

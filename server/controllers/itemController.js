@@ -30,11 +30,11 @@ itemController.updateItem = (req, res, next) => {
  
     const values = [req.body.photo, req.body.name, req.body.category, req.body.color, req.body.brand, req.body.size, req.body.note, req.params.id];
     const query = `UPDATE ITEMS SET photo = $1, name = $2, category = $3, color = $4, brand = $5, size = $6, note = $7 
-    WHERE ID = $8`; // added returning to return all data of the updated item  RETURNING *
+    WHERE ID = $8`; // add returning to return all data of the updated item  RETURNING * if need
 
     db.query(query, values)
     .then((data) => {
-        res.locals.item = data; // doese this work?
+        res.locals.item = data; // dosen't return anything yet witout RETURNING *
         return next();})
     .catch(error => {
         const errorOjb = {};
@@ -63,7 +63,8 @@ itemController.deleteItem = (req, res, next) => {
 
 // getting all items
 itemController.getItems = (req, res, next) => {
-    const query= `SELECT name, brand, size, note FROM ITEMS ORDER BY ID DESC`;
+    console.log('we made it in');
+    const query= `SELECT photo, name, category, color, brand, size, note, ID FROM ITEMS ORDER BY ID DESC`;
 
     db.query(query)
     .then(data => {
@@ -78,12 +79,32 @@ itemController.getItems = (req, res, next) => {
     });
 };
 
+// getting items by category - still fixing
+itemController.getItemsByCategory = (req, res, next) => {
+    const category = req.query.category;
+    console.log(req.query.category);
+    const values = [ category ];
+    const query = `SELECT photo, name, category, color, brand, size, note, ID FROM ITEMS WHERE category = $1 ORDER BY ID DESC`;
+
+    db.query(query, values)
+    .then(data => {
+      res.locals.items = data.rows;
+      return next(); 
+    })
+    .catch(error => {
+        const errorOjb = {};
+        errorOjb.log = 'itemController.getItemsCategory ' + error;
+        errorOjb.message = { err: 'itemController.getItemsCategory ERROR, Check server logs for details'};
+        return next(errorOjb);
+    });
+};
+
 // getting items by ID - still fixing 
 itemController.getItemsByID = (req, res, next) => {
     console.log(req.params);
     const id = req.params.id; // id will be an array later so need to be fixed acordingly
     const values = [ id ];
-    const query = `SELECT name, brand, size, note FROM ITEMS WHERE ID = $1`;
+    const query = `SELECT photo, name, category, color, brand, size, note, ID FROM ITEMS WHERE ID = $1`;
 
     db.query(query, values)
     .then(data => {
@@ -97,27 +118,6 @@ itemController.getItemsByID = (req, res, next) => {
         return next(errorOjb);
     });
 };
-
-// getting items by category - still fixing
-itemController.getItemsByCategory = (req, res, next) => {
-    const category = req.query.category;
-    const values = [ category ];
-    const query = `SELECT name, brand, size, note FROM ITEMS WHERE category = $1 ORDER BY ID DESC`;
-
-    db.query(query, values)
-    .then(data => {
-      res.locals.items = data.rows;
-      return next(); 
-    })
-    .catch(error => {
-        const errorOjb = {};
-        errorOjb.log = 'itemController.getItemsCategory ' + error;
-        errorOjb.message = { err: 'itemController.getItemsCategory ERROR, Check server logs for details'};
-        return next(errorOjb);
-    });
-};
-
-
 
 
 module.exports = itemController;
