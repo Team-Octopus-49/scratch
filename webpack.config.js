@@ -31,9 +31,9 @@ module.exports = {
     }),
   ],
 
-    devServer: {
-  historyApiFallback: true,
- proxy: {
+  devServer: {
+    historyApiFallback: true,
+    proxy: {
     '/api/**': 'http://localhost:3000'
   }
 }
