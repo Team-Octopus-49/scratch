@@ -10,6 +10,8 @@ import App from './App.jsx';
 import SignIn from './components/signin.jsx'
 import SignUp from './components/signup.jsx'
 import Home from './components/home.jsx'
+import Item from './components/item.jsx'
+import MyCloset from './components/mycloset.jsx'
 
 render( 
   <Router>
@@ -18,6 +20,8 @@ render(
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/item" element={<Item />} />
+      <Route path="/mycloset" element={<MyCloset />} />
   </Routes>
   </Router>,
     document.getElementById('root')

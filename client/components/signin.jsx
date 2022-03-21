@@ -34,7 +34,7 @@ class SignIn extends Component{
         })
         .then(res=> {
           console.log(res);
-          <Link to='/home'> Home</Link> 
+          // <Link to='/home'> Home</Link> 
         })
         .catch((err)=> {
             console.log('error')
