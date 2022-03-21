@@ -24,10 +24,13 @@ itemController.addItem = (req, res, next) => {
 };
 
 itemController.updateItem = (req, res, next) => {
-    const id = req.body.id; // double check later -> is it body or params?
-    const values = [req.body.photo, req.body.name, req.body.category, req.body.color, req.body.brand, req.body.size, req.body.note];
-    const query = `UPDATE ITEMS SET photo = $1, name = $2, category = $3, color = $4, brand = $5, size = $6, note = $7
-    WHERE ID = $id RETURNING *`; // added returning to return all data of the updated item 
+     console.log(req.body);
+    // console.log(req);
+    console.log(req.params);
+ 
+    const values = [req.body.photo, req.body.name, req.body.category, req.body.color, req.body.brand, req.body.size, req.body.note, req.params.id];
+    const query = `UPDATE ITEMS SET photo = $1, name = $2, category = $3, color = $4, brand = $5, size = $6, note = $7 
+    WHERE ID = $8`; // added returning to return all data of the updated item  RETURNING *
 
     db.query(query, values)
     .then((data) => {
@@ -42,7 +45,7 @@ itemController.updateItem = (req, res, next) => {
 };
 
 itemController.deleteItem = (req, res, next) => {
-    const id = req.body.id;
+    const id = req.params.id;
     const values = [ id ]
     const query= `DELETE FROM ITEMS WHERE ID = $1`;
 
@@ -60,7 +63,7 @@ itemController.deleteItem = (req, res, next) => {
 
 // getting all items
 itemController.getItems = (req, res, next) => {
-    const query= `SELECT name, brand, size, note FROM ITEMS`;
+    const query= `SELECT name, brand, size, note FROM ITEMS ORDER BY ID DESC`;
 
     db.query(query)
     .then(data => {
@@ -75,30 +78,12 @@ itemController.getItems = (req, res, next) => {
     });
 };
 
-// getting items by category
-itemController.getItemsByCategory = (req, res, next) => {
-    const category = req.body.category;
-    const values = [ category ];
-    const query = `SELECT name, brand, size, note FROM ITEMS WHERE category = $1`;
-
-    db.query(query, values)
-    .then(data => {
-      res.locals.items = data.rows;
-      return next(); 
-    })
-    .catch(error => {
-        const errorOjb = {};
-        errorOjb.log = 'itemController.getItemsCategory ' + error;
-        errorOjb.message = { err: 'itemController.getItemsCategory ERROR, Check server logs for details'};
-        return next(errorOjb);
-    });
-};
-
-// getting items by ID 
+// getting items by ID - still fixing 
 itemController.getItemsByID = (req, res, next) => {
-    const category = req.body.category;
-    const values = [ category ];
-    const query = `SELECT name, brand, size, note FROM ITEMS WHERE category = $1`;
+    console.log(req.params);
+    const id = req.params.id; // id will be an array later so need to be fixed acordingly
+    const values = [ id ];
+    const query = `SELECT name, brand, size, note FROM ITEMS WHERE ID = $1`;
 
     db.query(query, values)
     .then(data => {
@@ -112,6 +97,27 @@ itemController.getItemsByID = (req, res, next) => {
         return next(errorOjb);
     });
 };
+
+// getting items by category - still fixing
+itemController.getItemsByCategory = (req, res, next) => {
+    const category = req.query.category;
+    const values = [ category ];
+    const query = `SELECT name, brand, size, note FROM ITEMS WHERE category = $1 ORDER BY ID DESC`;
+
+    db.query(query, values)
+    .then(data => {
+      res.locals.items = data.rows;
+      return next(); 
+    })
+    .catch(error => {
+        const errorOjb = {};
+        errorOjb.log = 'itemController.getItemsCategory ' + error;
+        errorOjb.message = { err: 'itemController.getItemsCategory ERROR, Check server logs for details'};
+        return next(errorOjb);
+    });
+};
+
+
 
 
 module.exports = itemController;
