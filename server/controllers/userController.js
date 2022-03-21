@@ -7,13 +7,13 @@ const userController = {};
 * createUser - create and save a new User into the database.
 *///signing up
 userController.createUser = (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, password } = req.body.accountSelector;
   res.locals.newUser = req.body;
   User.create({
     username: username,
     password: password, 
   });
-  next(); 
+  return next(); 
 }
 
     /**
@@ -35,7 +35,7 @@ userController.verifyUser = (req, res, next) => {
           res.redirect('/signin');
         }
       } else { 
-        next(err);
+        return next(err);
       }
       // password is correct
     });
