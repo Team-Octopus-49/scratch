@@ -22,8 +22,7 @@ const ClosetItems = ({info}) => {
                 <button className='itemCardBtn' name="update">Update</button> 
                 <button className='itemCardBtn' name="delete">Delete</button> 
             </div>
-            <ul className='itemDetailsList'> {/* name, brand, size, note */}
-                <li className='itemDetail'>{name}</li> 
+            <ul className='itemDetailsList'> {/* brand, size, note */}
                 <li className='itemDetail'>{brand}</li> 
                 <li className='itemDetail'>{size}</li> 
                 <li className='itemDetail'>{note}</li> 
