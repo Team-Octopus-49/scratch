@@ -15,10 +15,10 @@ const ClosetItems = ({info}) => {
                 </form>
                 <h3 className='itemName'>{name}</h3>
             </div> 
-            <div className='itemPhotoContainer'> {/* photo*/}
+            <div className='itemPhotoContainer, containerCenter'> {/* photo*/}
                 <img className="itemPhoto" src={photo}></img>
             </div>
-            <div  className='itemCardBtnContainer'> {/* update and delete btns */}
+            <div  className='itemCardBtnContainer, containerCenter'> {/* update and delete btns */}
                 <button className='itemCardBtn' name="update">Update</button> 
                 <button className='itemCardBtn' name="delete">Delete</button> 
             </div>
