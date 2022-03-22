@@ -7,14 +7,26 @@ const userController = {};
 * createUser - create and save a new User into the database.
 *///signing up
 userController.createUser = (req, res, next) => {
+  console.log(req.body)
   const { username, password } = req.body.accountSelector;
-  res.locals.newUser = req.body;
   User.create({
     username: username,
     password: password, 
-  });
-  return next(); 
-}
+  }, 
+  (err, User) => {
+    if (err) {
+      return next({
+        log: 'create acct err',
+        status: 400,
+        message: { err: 'something wrong with createacct middleware'} 
+      })
+    } else {
+      res.locals.newUser = User;
+      console.log('in else')
+      return next();
+    }
+  })
+};
 
     /**
 * verifyUser - Obtain username and password from the request body, locate
@@ -22,16 +34,16 @@ userController.createUser = (req, res, next) => {
 * against the password stored in the database.
 */
 userController.verifyUser = (req, res, next) => {
-
-  if(req.body.username && req.body.password){
-    User.findOne({username: req.body.username}, (err, docs) => {
+console.log('13')
+  if(req.body.accountSelector.username && req.body.accountSelector.password){
+    User.findOne({username: req.body.accountSelector.username}, (err, docs) => {
       console.log('docs: ', docs);
       if(!err){
         if (docs.password === req.body.password) {
           console.log('Successful login');
            return next();
         } else {
-          alert('Incorrect Password');
+          // alert('Incorrect Password');
           res.redirect('/signin');
         }
       } else { 

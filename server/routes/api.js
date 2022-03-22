@@ -10,8 +10,7 @@ const router = express.Router();
 router.get('/signin',
   userController.verifyUser,
   (req, res) => {
-    res.status(200);
-    console.log("IT WORKERED");
+    res.status(200).redirect('/home');
   }
 );
 //res.status(200).redirect('/home');
@@ -24,7 +23,7 @@ router.post('/signup',
   userController.createUser,
   (req, res) => {
     // what should happen here on successful sign up? What if we try to sign up and we alrady have an acct ?
-    res.status(200).json(res.locals.newUser)//.redirect('/home'); 
+    res.status(200).redirect('/home'); 
   });
 
 router.get('/allusers',

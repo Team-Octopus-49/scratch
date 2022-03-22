@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-
+import { Link } from "react-router-dom";
 
 
 class SignUp extends Component{
@@ -12,7 +12,12 @@ class SignUp extends Component{
       // }
     }
     render(){
-      const saveCredentials = () => {
+      const saveCredentials = (e) => {
+        const accountSelector = {
+          username: document.querySelector("#username").value,
+          password: document.querySelector("#psw").value
+        }
+        console.log(accountSelector)
         // if ("#username".value === '') {
         //   alert('username cannot be blank');
         // // check if height is not a number
@@ -30,33 +35,27 @@ class SignUp extends Component{
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            username : ("#username").value,
-            password: ("#password").value
-          }
-          )
+            accountSelector: accountSelector
+          })
         })
         .then(data => {
-          return data.json()
-        })
-        .then(res=> {
-          console.log(res);
-          // <Link to='/home'> Home</Link> 
+          console.log("1")
         })
         .catch((err)=> {
             console.log('error')
         });
       }
       return (
-        <div className='containerCenter'>
-          <div className="container">
-            <h1> Sign Up </h1>
-            <label htmlFor="username"><b> Username </b></label>
-            <input type="text" placeholder="Enter Username" name="username" required/>
-            <label htmlFor="psw"><b> Password </b></label>
-            <input type="password"  placeholder="Enter Password" name="psw" required/>
-            <button type="submit" onClick={saveCredentials}> Sign Up </button>
-          </div>
+        <form method="post">
+        <div className="container">
+        <h1> Sign Up </h1>
+        <label name ="username"><b> Username </b></label>
+        <input type="text" placeholder="Enter Username" id="username"required/>
+        <label  name="psw"><b> Password </b></label>
+        <input type="password"  placeholder="Enter Password" id="psw" required/>
+        <Link to='/home' className='backLink'><button type="submit" onClick={saveCredentials}> Sign Up </button></Link>
         </div>
+        </form>
       );
     }
 }

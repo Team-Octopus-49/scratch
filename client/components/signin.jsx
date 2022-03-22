@@ -8,7 +8,12 @@ class SignIn extends Component{
       super(props);
     }
     render(){
-      const getCredentials = () => {
+      const getCredentials = (e) => {
+        const accountSelector1 = {
+          username: document.querySelector("#username").value,
+          password: document.querySelector("#psw").value
+        }
+        console.log(accountSelector1)
         // if ("#username".value === '') {
         //   alert('username cannot be blank');
         // // check if height is not a number
@@ -21,24 +26,23 @@ class SignIn extends Component{
         //   }
         // }
         fetch('/api/signin', {
+          method: "GET",
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            username : ("#username").value,
-            password: ("#password").value
-          }
-          )
+            accountSelector1: accountSelector1
+          })
         })
         .then(data => {
-          return data.json()
+          console.log('12')
         })
-        .then(res=> {
-          console.log(res);
-          // <Link to='/home'> Home</Link> 
-        })
+        // .then(res=> {
+        //   console.log(res);
+        // //   // <Link to='/home'> Home</Link> 
+        // })
         .catch((err)=> {
-            console.log('error')
+            console.log('error with fetch')
         });
       }
       return (
