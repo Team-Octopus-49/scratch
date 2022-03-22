@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Link } from "react-router-dom";
 
 import ClosetItems from './closetitems.jsx';
+import Nav from "./nav.jsx";
 
 
 class MyCloset extends Component{
@@ -42,25 +43,31 @@ class MyCloset extends Component{
     });
 
       return (
-        <div className="container" >
-          <div className='categoryBar'>
-            <h1> Category </h1>
-            <button type="outerwear"> Outerwear </button> |{" "}
-            <button type="tops"> Tops </button> |{" "}
-            <button type="pants"> Pants </button>|{" "}
-            <button type="skirts"> Skirts </button>|{" "}
-            <button type="shoes"> Shoes </button>|{" "}
-            <button type="accessories"> Accessories </button>|{" "}
-            <Link to='/home'> Home </Link>
+        <div>
+          <Nav />
+
+        <div className='containerCenter'>
+          <div>
+          <div className='containerCenter'>
+            <div className='categoryBar'>
+              <h1> Category </h1>
+              <button type="outerwear"> Outerwear </button> |{" "}
+              <button type="tops"> Tops </button> |{" "}
+              <button type="pants"> Pants </button>|{" "}
+              <button type="skirts"> Skirts </button>|{" "}
+              <button type="shoes"> Shoes </button>|{" "}
+              <button type="accessories"> Accessories </button>|{" "}
+              <Link to='/home'> Home </Link>
+            </div>
           </div>
+          {/* add ClosetItem jsx class component and render each item in state*/}
 
-        {/* add ClosetItem jsx class component and render each item in state*/}
-
-          <div className="itemDisplay">
-            {itemCards}
+            <div className="itemDisplay">
+              {itemCards}
+            </div>  
+          </div>
           </div>
         </div>
-      
           );
     }
 }

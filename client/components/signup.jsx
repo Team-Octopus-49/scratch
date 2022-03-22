@@ -46,16 +46,18 @@ class SignUp extends Component{
         });
       }
       return (
-        // <form method="post">
-        <div className="container">
-        <h1> Sign Up </h1>
-        <label name ="username"><b> Username </b></label>
-        <input type="text" placeholder="Enter Username" id="username"required/>
-        <label  name="psw"><b> Password </b></label>
-        <input type="password"  placeholder="Enter Password" id="psw" required/>
-        <Link to='/home' className='backLink'><button type="submit" onClick={saveCredentials}> Sign Up </button></Link>
-        </div>
-        // </form>
+        <form method="post">
+          <div className='containerCenter'>
+            <div className="container">
+            <h1> Sign Up </h1>
+            <label name ="username"><b> Username </b></label>
+            <input type="text" placeholder="Enter Username" id="username"required/>
+            <label  name="psw"><b> Password </b></label>
+            <input type="password"  placeholder="Enter Password" id="psw" required/>
+            <Link to='/home' className='backLink'><button type="submit" onClick={saveCredentials}> Sign Up </button></Link>
+            </div>
+          </div>
+        </form>
       );
     }
 }
